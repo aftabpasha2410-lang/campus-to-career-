@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Campus to Career{% endblock %}</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><header><div class="nav wrap"><a class="brand" href="{{ url_for('index') }}"><span class="logo">C</span><span>Campus <em>to</em> Career<small>FIND YOUR NEXT OPPORTUNITY</small></span></a>
+<nav><a href="{{ url_for('index') }}">Find jobs</a>{% if current_user_name %}<a href="{{ url_for('dashboard') }}">Dashboard</a><span class="welcome">Hi, {{ current_user_name }}</span><a class="btn light small" href="{{ url_for('logout') }}">Log out</a>{% else %}<a href="{{ url_for('login') }}">Log in</a><a class="btn small" href="{{ url_for('register') }}">Create account</a>{% endif %}</nav></div></header>
+<main class="wrap">{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="messages">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}{% block content %}{% endblock %}</main>
+<footer><div class="wrap">Campus to Career · Connecting students with opportunities</div></footer></body></html>
